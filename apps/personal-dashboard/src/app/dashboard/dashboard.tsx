@@ -46,15 +46,17 @@ export function Dashboard() {
     const itemLayout = item.layout?.[breakpoint];
     return {
       i: item.id,
-      x: itemLayout?.x ?? 0, y: itemLayout?.y ?? 0,
-      w: itemLayout?.w ?? 1, h: itemLayout?.h ?? 1,
-      minW: itemLayout?.minW ?? minCardWidth, minH: itemLayout?.minH ?? minCardHeight
+      x: itemLayout?.x ?? 0,
+      y: itemLayout?.y ?? 0,
+      w: itemLayout?.w ?? 1,
+      h: itemLayout?.h ?? 1,
+      minW: itemLayout?.minW ?? minCardWidth,
+      minH: itemLayout?.minH ?? minCardHeight
     };
   }),]),) : {}, [config]);
 
   useEffect(() => {
     if (config) {
-      console.log('XXX configuredLayouts', configuredLayouts);
       setLayouts(configuredLayouts);
     }
   }, [config, configuredLayouts]);
@@ -92,7 +94,7 @@ export function Dashboard() {
         onLayoutChange={(_layout, allLayouts) => setLayouts(allLayouts)}
       >
         {config.items.map((item) => (
-          <section className="flex h-full flex-col rounded-2xl bg-white p-5 shadow-sm" key={item.id}>
+          <section key={item.id} className="flex h-full flex-col rounded-2xl bg-white p-5 shadow-sm">
             {item.title &&
               <div className="flex cursor-move items-center gap-2 font-bold mb-2" aria-label={`Move ${item.title}`}>
                 <span className="text-[22px] leading-none text-slate-400" aria-hidden="true">⠿</span>

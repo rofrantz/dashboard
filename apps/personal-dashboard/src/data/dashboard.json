@@ -4,33 +4,37 @@
   "items": [
     {
       "id": "focus",
+      "type": "checkbox-list",
       "title": "Today’s focus",
       "lastUpdated": "2026-10-28",
       "description": "Keep the next few hours simple and intentional.",
-      "layout": { "lg": { "x": 0, "y": 0, "w": 7, "h": 18 }, "md": { "x": 0, "y": 0, "w": 5, "h": 13 }, "sm": { "x": 0, "y": 0, "w": 6, "h": 13 }, "xs": { "x": 0, "y": 0, "w": 4, "h": 13 }, "xxs": { "x": 0, "y": 0, "w": 2, "h": 13 } },
+      "layout": { "lg": { "x": 0, "y": 0, "w": 7, "h": 18 }, "md": { "x": 0, "y": 0, "w": 5, "h": 18 }, "sm": { "x": 0, "y": 0, "w": 6, "h": 18 }, "xs": { "x": 0, "y": 0, "w": 4, "h": 18 }, "xxs": { "x": 0, "y": 0, "w": 2, "h": 18 } },
       "items": ["Finish the dashboard shell", "Review the market brief", "Take a proper lunch break"]
     },
     {
       "id": "quick-links",
+      "type": "link-list",
       "title": "Quick links",
       "lastUpdated": "2026-10-27",
       "description": "The places you reach for most often.",
-      "layout": { "lg": { "x": 7, "y": 0, "w": 6, "h": 21 }, "md": { "x": 5, "y": 0, "w": 5, "h": 13 }, "sm": { "x": 0, "y": 13, "w": 3, "h": 12 }, "xs": { "x": 0, "y": 13, "w": 4, "h": 12 }, "xxs": { "x": 0, "y": 13, "w": 2, "h": 12 } },
+      "layout": { "lg": { "x": 7, "y": 0, "w": 6, "h": 21 }, "md": { "x": 5, "y": 0, "w": 5, "h": 21 }, "sm": { "x": 0, "y": 13, "w": 3, "h": 21 }, "xs": { "x": 0, "y": 13, "w": 4, "h": 21 }, "xxs": { "x": 0, "y": 13, "w": 2, "h": 21 } },
       "items": ["Portfolio", "Projects", "Notes", "Calendar"]
     },
     {
       "id": "watchlist",
+      "type": "link-list",
       "title": "Watchlist",
       "lastUpdated": "2026-10-28",
       "description": "A small snapshot of what is moving.",
-      "layout": { "lg": { "x": 13, "y": 0, "w": 6, "h": 18 }, "md": { "x": 0, "y": 13, "w": 5, "h": 13 }, "sm": { "x": 3, "y": 13, "w": 3, "h": 12 }, "xs": { "x": 0, "y": 25, "w": 4, "h": 12 }, "xxs": { "x": 0, "y": 25, "w": 2, "h": 12 } },
+      "layout": { "lg": { "x": 13, "y": 0, "w": 6, "h": 18 }, "md": { "x": 0, "y": 13, "w": 5, "h": 18 }, "sm": { "x": 3, "y": 13, "w": 3, "h": 18 }, "xs": { "x": 0, "y": 25, "w": 4, "h": 18 }, "xxs": { "x": 0, "y": 25, "w": 2, "h": 18 } },
       "items": ["AAPL · +1.8%", "MSFT · +0.6%", "NVDA · -0.4%"]
     },
     {
       "id": "notes",
+      "type": "checkbox-list",
       "title": "Open loops",
       "lastUpdated": "2026-10-26",
-      "layout": { "lg": { "x": 19, "y": 0, "w": 9, "h": 16 }, "md": { "x": 5, "y": 13, "w": 5, "h": 11 }, "sm": { "x": 0, "y": 25, "w": 6, "h": 11 }, "xs": { "x": 0, "y": 37, "w": 4, "h": 11 }, "xxs": { "x": 0, "y": 37, "w": 2, "h": 11 } },
+      "layout": { "lg": { "x": 19, "y": 0, "w": 9, "h": 16 }, "md": { "x": 5, "y": 13, "w": 5, "h": 16 }, "sm": { "x": 0, "y": 25, "w": 6, "h": 16 }, "xs": { "x": 0, "y": 37, "w": 4, "h": 16 }, "xxs": { "x": 0, "y": 37, "w": 2, "h": 16 } },
       "items": ["Decide on the next small product improvement", "Archive old notes", "Book a focus block for tomorrow"]
     }
   ]
