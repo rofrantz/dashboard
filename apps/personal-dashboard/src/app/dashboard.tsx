@@ -1,14 +1,17 @@
-import { useMemo, useState } from 'react';
-import { Responsive, WidthProvider, type Layout, type Layouts } from 'react-grid-layout';
+import {useMemo, useState} from 'react';
+import {type Layout, type Layouts, Responsive, WidthProvider} from 'react-grid-layout';
 
 import dashboardConfig from '../data/dashboard.json';
 import './dashboard-grid.scss';
 import './resize-handle.scss';
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
-const rowHeight = 43;
-const minCardWidth = 3;
-const minCardHeight = 4;
+
+const rowHeight = 32;     // height of each row in pixels
+const defaultRowGap = 8;  // gap between rows in pixels
+
+const minCardWidth = 2;
+const minCardHeight = 2;
 
 type DashboardLayout = {
   x: number;
@@ -34,8 +37,8 @@ export function Dashboard() {
         dashboardConfig.items.map((item) => ({
           ...item.layout[breakpoint as keyof typeof item.layout],
           i: item.id,
-          minW: Math.min(minCardWidth, dashboardConfig.columns[breakpoint as keyof typeof dashboardConfig.columns]),
-          minH: minCardHeight,
+          minW: minCardWidth,
+          minH: minCardHeight
         })),
       ]),
     ),
@@ -44,14 +47,14 @@ export function Dashboard() {
   useMemo(() => new Map(dashboardConfig.items.map((item) => [item.id, item])), []);
 
   return (
-    <main className="dashboard-shell">
-      <header className="dashboard-header">
+    <main className="min-h-screen bg-slate-50 px-5 py-7 text-slate-900 sm:px-10 sm:py-12 lg:px-[5vw]">
+      <header className="mx-auto mb-7 flex max-w-360 flex-col justify-between gap-4 sm:flex-row sm:items-end">
         <div>
-          <p className="eyebrow">Workspace</p>
-          <h1>{dashboardConfig.title}</h1>
-          <p className="dashboard-subtitle">{dashboardConfig.subtitle}</p>
+          <p className="mb-2 text-xs font-bold uppercase tracking-[.12em] text-slate-500">Workspace</p>
+          <h1 className="text-4xl font-bold tracking-tighter sm:text-6xl">{dashboardConfig.title}</h1>
+          <p className="mt-3 text-base text-slate-500">{dashboardConfig.subtitle}</p>
         </div>
-        <div className="layout-hint">Drag to move · resize from the corners</div>
+        <div className="text-xs text-slate-400">Drag to move · resize from the corners</div>
       </header>
 
       <ResponsiveGridLayout
@@ -59,27 +62,35 @@ export function Dashboard() {
         layouts={layouts}
         breakpoints={dashboardConfig.breakpoints}
         cols={dashboardConfig.columns}
-        rowHeight={rowHeight}
-        margin={dashboardConfig.margin as [number, number]}
+        rowHeight={rowHeight + defaultRowGap}
+        margin={[0, 0]}
         containerPadding={[0, 0]}
         isDraggable
         isResizable
-        draggableHandle=".dashboard-card__handle"
+        draggableHandle=".cursor-move"
         onLayoutChange={(_current: Layout[], all: Layouts) => setLayouts(all)}
       >
         {dashboardConfig.items.map((item: HomepageDashboardCard) => (
-          <section className="dashboard-card" key={item.id}>
-            <div className="dashboard-card__handle" aria-label={`Move ${item.title}`}>
-              <span className="dashboard-card__grip" aria-hidden="true">⠿</span>
+          <section key={item.id}
+                   className="flex h-full flex-col overflow-visible rounded-[20px] border border-slate-200 bg-white/90 p-5 shadow-[0_10px_24px_rgba(20,34,66,.06),0_2px_5px_rgba(20,34,66,.04)] transition-shadow duration-500 ease-out hover:shadow-[0_18px_30px_rgba(20,34,66,.14),0_7px_10px_rgba(20,34,66,.08)]">
+            <div className="flex cursor-move items-center gap-2 font-bold mb-2" aria-label={`Move ${item.title}`}>
+              <span className="text-[22px] leading-none text-slate-400" aria-hidden="true">⠿</span>
               <span>{item.title}</span>
-              <time className="dashboard-card__updated" dateTime={item.lastUpdated}>
-                Updated {new Date(item.lastUpdated).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}
+              <time className="ml-auto whitespace-nowrap text-[11px] font-medium tracking-[.02em] text-slate-400"
+                    dateTime={item.lastUpdated}>
+                Updated {new Date(item.lastUpdated).toLocaleDateString(undefined, {
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric'
+              })}
               </time>
             </div>
-            {item.description && <p className="dashboard-card__description">{item.description}</p>}
-            <div className="dashboard-card__body">
-              <ul className="dashboard-card__list">
-                {item.items.map((entry) => <li key={entry}>{entry}</li>)}
+            {item.description && <p className="mb-4 text-sm leading-6 text-slate-500">{item.description}</p>}
+            <div className="min-h-0 flex-1 overflow-y-auto pr-1 [scrollbar-color:#c5ccda_transparent] scrollbar-thin">
+              <ul className="mt-2 grid list-none" style={{gap: defaultRowGap}}>
+                {item.items.map((entry) => <li style={{height: rowHeight}}
+                                               className="flex items-center rounded-xl bg-slate-100 px-3 text-sm text-slate-700"
+                                               key={entry}>{entry}</li>)}
               </ul>
             </div>
           </section>
