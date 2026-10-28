@@ -2,13 +2,11 @@ import {useMemo, useState} from 'react';
 import {type Layout, type Layouts, Responsive, WidthProvider} from 'react-grid-layout';
 
 import dashboardConfig from '../data/dashboard.json';
-import './dashboard-grid.scss';
-import './resize-handle.scss';
+import './dashboard.scss';
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
 const rowHeight = 40;     // height of each row in pixels
-const defaultRowGap = 12;  // gap between rows in pixels
 
 const minCardWidth = 6;
 const minCardHeight = 2;

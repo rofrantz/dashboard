@@ -1,55 +1,6 @@
-.dashboard-shell {
-  min-height: 100vh;
-  padding: 48px clamp(20px, 5vw, 72px) 64px;
-  background: #f7f8fc;
-  color: #182230;
-}
-
-.dashboard-header {
-  display: flex;
-  align-items: end;
-  justify-content: space-between;
-  gap: 24px;
-  max-width: 1440px;
-  margin: 0 auto 28px;
-}
-
-.eyebrow {
-  margin: 0 0 8px;
-  color: #667085;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-}
-
-.dashboard-header h1 {
-  margin: 0;
-  font-size: clamp(32px, 5vw, 56px);
-  letter-spacing: -.05em;
-}
-
-.dashboard-subtitle {
-  margin: 12px 0 0;
-  color: #667085;
-  font-size: 16px;
-}
-
-.layout-hint {
-  color: #98a2b3;
-  font-size: 13px;
-  white-space: nowrap;
-}
-
-.dashboard-grid {
-  max-width: 1440px;
-  margin: 0 auto;
-}
-
-// Local equivalents of react-grid-layout's optional package stylesheet.
 .react-grid-layout {
   position: relative;
-  transition: height 200ms ease;
+  margin: 0 auto;
 }
 
 .react-grid-item {
@@ -70,166 +21,16 @@
   border-radius: 20px;
   background: #dfe7ff;
   opacity: .7;
-  transition-duration: 100ms;
-  user-select: none;
 }
-
-.dashboard-card {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  overflow: visible;
-  box-sizing: border-box;
-  height: 100%;
-  border: 1px solid #e7eaf1;
-  border-radius: 20px;
-  padding: 20px;
-  background: rgba(255, 255, 255, .9);
-  box-shadow: 0 10px 24px rgba(20, 34, 66, .06), 0 2px 5px rgba(20, 34, 66, .04);
-  transition: transform 700ms cubic-bezier(.22, 1, .36, 1);
-  will-change: transform;
-}
-
-.dashboard-card::after {
-  position: absolute;
-  z-index: 1;
-  inset: -2px;
-  border-radius: inherit;
-  box-shadow: 0 18px 30px rgba(20, 34, 66, .14), 0 7px 10px rgba(20, 34, 66, .08);
-  content: '';
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 1500ms cubic-bezier(.22, 1, .36, 1);
-}
-
-.dashboard-card:hover {
-  transform: translateY(-4px);
-}
-
-.dashboard-card:hover::after {
-  opacity: 1;
-}
-
-.dashboard-card:focus-within {
-  border-color: #9aaef0;
-  box-shadow: 0 0 0 4px rgba(98, 119, 208, .14), 0 16px 34px rgba(54, 74, 140, .12);
-}
-
-.dashboard-card__handle {
-  position: sticky;
-  top: 0;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  cursor: move;
-  font-size: 17px;
-  font-weight: 700;
-  background: rgba(255, 255, 255, .9);
-}
-
-.dashboard-card__body {
-  min-height: 0;
-  flex: 1;
-  overflow-y: auto;
-  padding-right: 6px;
-  scrollbar-color: #c5ccda transparent;
-  scrollbar-width: thin;
-}
-
-.dashboard-card__grip {
-  color: #aab2c0;
-  font-size: 22px;
-  line-height: 1;
-}
-
-.dashboard-card__updated {
-  margin-left: auto;
-  color: #98a2b3;
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: .02em;
-  white-space: nowrap;
-}
-
-.dashboard-card__description {
-  position: sticky;
-  z-index: 2;
-  top: 42px;
-  margin: 12px 0 0;
-  background: rgba(255, 255, 255, .9);
-  color: #667085;
-  font-size: 14px;
-  line-height: 1.5;
-}
-
-.dashboard-card__list {
-  display: grid;
-  gap: 12px;
-  margin: 22px 0 0;
-  padding: 0;
-  list-style: none;
-}
-
-.dashboard-card__body::-webkit-scrollbar {
-  width: 6px;
-}
-
-.dashboard-card__body::-webkit-scrollbar-thumb {
-  border-radius: 999px;
-  background: #c5ccda;
-}
-
-.dashboard-card__list li {
-  padding: 11px 12px;
-  border-radius: 12px;
-  background: #f4f6fa;
-  color: #344054;
-  font-size: 14px;
-}
-
-@media (max-width: 640px) {
-  .dashboard-shell {
-    padding-top: 28px;
-  }
-
-  .dashboard-header {
-    display: block;
-  }
-
-  .layout-hint {
-    margin-top: 16px;
-  }
-}
-
-// Two inset quarter-circle strokes that follow the card's rounded corner.
-.react-resizable-handle {
-  width: 20px;
-  height: 20px;
-  color: #c3ccdb;
-  background: transparent;
-  opacity: 0;
-  transition: opacity 180ms ease;
-}
-
-.react-grid-item:hover > .react-resizable-handle.react-resizable-handle-se,
-.react-grid-item > .react-resizable-handle.react-resizable-handle-se:hover {
-  opacity: 1;
-}
-
-// Small bottom-right triangle with inset resize strokes.
 
 .react-resizable-handle {
   position: absolute;
   right: 0;
   bottom: 0;
-  cursor: se-resize;
-
-  background-image: none;
-  background-color: currentColor;
-  mask-image: url('../assets/resize-handle.svg');
-  mask-position: right bottom;
-  mask-repeat: no-repeat;
-  mask-size: 36px 36px;
-  color: #727f9b;
+  display: block;
+  width: 16px;
+  height: 16px;
   margin: 10px;
+  cursor: se-resize;
+  background: url('../assets/resize-handle.svg') center / contain no-repeat;
 }

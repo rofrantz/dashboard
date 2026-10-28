@@ -29,6 +29,6 @@ For Tailwind v4, configure the workspace with the Tailwind PostCSS integration a
 
 Do not place that import in `.scss`; Sass `@import` is deprecated and is the wrong processing path for Tailwind v4. Use Tailwind utility classes for component styling and keep SCSS limited to integration rules that need selectors or pseudo-elements.
 
-For the dashboard home, keep content in `apps/personal-dashboard/src/data/dashboard.json` and use `react-grid-layout` for responsive dragging and resizing. Preserve the card shape: `id`, `title`, optional `description`, `items`, and breakpoint-specific `layout` values.
+The active dashboard configuration is runtime-loaded from `apps/personal-dashboard/public/dashboard.json`. Keep its required `id`, `type`, and `layout` fields aligned with `src/app/dashboard/dashboard.types.ts` and `dashboard.api.ts`.
 
 Keep dashboard styling in SCSS. The installed grid package does not expose CSS subpath imports reliably, so use local SCSS for the grid placeholder and resize handle rules.
