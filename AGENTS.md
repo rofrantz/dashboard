@@ -30,6 +30,14 @@ Always report the exact command, project, target, and pass/fail/running result.
 
 ## Tailwind and Sass
 
+- Use Tailwind utility classes for component and layout styling by default.
+- Keep SCSS thin and limited to third-party integration selectors, grid transitions, resize handles, and browser-specific rules that cannot be expressed cleanly with utilities.
 - Tailwind v4 must be imported from a plain CSS entrypoint with `@import "tailwindcss";`.
-- Do not put `@import "tailwindcss";` in a `.scss` file; Dart Sass reports it as deprecated and Tailwind may not be processed correctly.
-- Keep Sass imports for Sass-specific styles only, and ensure the app entrypoint imports the Tailwind CSS file.
+- Do not put `@import "tailwindcss";` in a `.scss` file; Dart Sass reports it as deprecated.
+
+## Dashboard layout
+
+- The home dashboard is driven by `apps/personal-dashboard/src/data/dashboard.json`.
+- Each configured card has an `id`, `title`, optional `description`, `items`, and responsive layouts under `layout`.
+- Use the installed `react-grid-layout` package for dragging and resizing; do not reimplement grid interactions unless the requirements change substantially.
+- Do not import `react-grid-layout/css/styles.css` or `react-resizable/css/styles.css` from package subpaths; keep the required grid and resize rules in the dashboard's local `.scss` file because those package CSS paths are not exported by the installed version.
