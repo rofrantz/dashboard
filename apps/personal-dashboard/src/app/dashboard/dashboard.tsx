@@ -1,6 +1,8 @@
 import {useEffect, useMemo, useReducer, useRef, useState} from 'react';
 import {type Layout, type Layouts, Responsive} from 'react-grid-layout';
 
+import {DashboardItem} from '../dashboard-item/dashboard-item';
+
 import {fetchDashboardConfig} from './dashboard.api';
 import type {DashboardAction, DashboardState} from './dashboard.types';
 
@@ -35,14 +37,16 @@ export function Dashboard() {
       .catch((error: unknown) => {
         if (error instanceof DOMException && error.name === 'AbortError') return;
         dispatch({
-          type: 'failed', error: error instanceof Error ? error.message : 'Unable to load dashboard configuration'
+          type: 'failed',
+          error: error instanceof Error ? error.message : 'Unable to load dashboard configuration'
         });
       });
     return () => controller.abort();
   }, []);
 
   const config = state.status === 'ready' ? state.config : null;
-  const configuredLayouts = useMemo<Layouts>(() => config ? Object.fromEntries(Object.keys(config.columns).map((breakpoint) => [breakpoint, config.items.map((item): Layout => {
+  const configuredLayouts = useMemo<Layouts>(() => config ? Object.fromEntries(
+    Object.keys(config.columns).map((breakpoint) => [breakpoint, config.items.map((item): Layout => {
     const itemLayout = item.layout?.[breakpoint];
     return {
       i: item.id,
@@ -90,30 +94,10 @@ export function Dashboard() {
         containerPadding={[0, 0]}
         isDraggable
         isResizable
-        draggableHandle=".cursor-move"
+        draggableHandle=".dashboard-card__title-handle"
         onLayoutChange={(_layout, allLayouts) => setLayouts(allLayouts)}
       >
-        {config.items.map((item) => (
-          <section key={item.id} className="flex h-full flex-col rounded-2xl bg-white p-5 shadow-sm">
-            {item.title &&
-              <div className="flex cursor-move items-center gap-2 font-bold mb-2" aria-label={`Move ${item.title}`}>
-                <span className="text-[22px] leading-none text-slate-400" aria-hidden="true">⠿</span>
-                <span>{item.title}</span>
-                {item.lastUpdated && <time
-                  className="ml-auto whitespace-nowrap text-[11px] font-medium tracking-[.02em] text-slate-400"
-                  dateTime={item.lastUpdated}>
-                  Updated {new Date(item.lastUpdated).toLocaleDateString(undefined, {
-                  month: 'short', day: 'numeric', year: 'numeric'
-                })}
-                </time>}
-              </div>}
-            {item.description && <p className="my-2 text-sm text-slate-500">{item.description}</p>}
-            {item.items && <div
-              className="min-h-0 flex-1 overflow-y-auto pr-1 [scrollbar-color:#c5ccda_transparent] scrollbar-thin">
-              <ul className="mt-4 grid gap-2">{item.items.map((entry) => <li
-                className="rounded-lg bg-slate-100 p-3 text-sm" key={entry}>{entry}</li>)}</ul>
-            </div>}
-          </section>))}
+        {config.items.map((item) => <DashboardItem key={item.id} item={item}/>)}
       </Responsive>)}
     </div>
   </main>);
