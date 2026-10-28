@@ -30,23 +30,17 @@ export function Dashboard() {
       .catch((error: unknown) => {
         if (error instanceof DOMException && error.name === 'AbortError') return;
         dispatch({
-          type: 'failed',
-          error: error instanceof Error ? error.message : 'Unable to load dashboard configuration'
+          type: 'failed', error: error instanceof Error ? error.message : 'Unable to load dashboard configuration'
         });
       });
     return () => controller.abort();
   }, []);
 
   const config = state.status === 'ready' ? state.config : null;
-  const configuredLayouts = useMemo<Layouts>(() => config ? Object.fromEntries(
-    Object.keys(config.columns).map((breakpoint) => [
-      breakpoint,
-      config.items.map((item): Layout => {
-        const itemLayout = item.layout?.[breakpoint];
-        return {i: item.id, x: itemLayout?.x ?? 0, y: itemLayout?.y ?? 0, w: itemLayout?.w ?? 1, h: itemLayout?.h ?? 1};
-      }),
-    ]),
-  ) : {}, [config]);
+  const configuredLayouts = useMemo<Layouts>(() => config ? Object.fromEntries(Object.keys(config.columns).map((breakpoint) => [breakpoint, config.items.map((item): Layout => {
+    const itemLayout = item.layout?.[breakpoint];
+    return {i: item.id, x: itemLayout?.x ?? 0, y: itemLayout?.y ?? 0, w: itemLayout?.w ?? 1, h: itemLayout?.h ?? 1};
+  }),]),) : {}, [config]);
 
   useEffect(() => {
     if (config) setLayouts(configuredLayouts);
@@ -66,13 +60,11 @@ export function Dashboard() {
   if (state.status === 'error') return <main className="p-10 text-red-600" role="alert">{state.error}</main>;
   if (!config) return null;
 
-  return (
-    <main className="min-h-screen bg-slate-50 p-8 text-slate-900">
+  return (<main className="min-h-screen bg-slate-50 p-8 text-slate-900">
       <h1 className="text-4xl font-bold">Personal dashboard</h1>
       <p className="mt-3 text-slate-500">A flexible home for the things you check most often.</p>
       <div ref={gridContainerRef} className="mx-auto mt-8 w-full">
-        {gridWidth > 0 && (
-          <Responsive
+        {gridWidth > 0 && (<Responsive
             width={gridWidth}
             className="w-full"
             layouts={layouts}
@@ -92,27 +84,24 @@ export function Dashboard() {
                   <div className="flex cursor-move items-center gap-2 font-bold mb-2" aria-label={`Move ${item.title}`}>
                     <span className="text-[22px] leading-none text-slate-400" aria-hidden="true">⠿</span>
                     <span>{item.title}</span>
-                    {item.lastUpdated &&
-                      <time
-                        className="ml-auto whitespace-nowrap text-[11px] font-medium tracking-[.02em] text-slate-400"
-                        dateTime={item.lastUpdated}>
-                        Updated {new Date(item.lastUpdated).toLocaleDateString(undefined, {
-                        month: 'short', day: 'numeric', year: 'numeric'
-                      })}
-                      </time>}
+                    {item.lastUpdated && <time
+                      className="ml-auto whitespace-nowrap text-[11px] font-medium tracking-[.02em] text-slate-400"
+                      dateTime={item.lastUpdated}>
+                      Updated {new Date(item.lastUpdated).toLocaleDateString(undefined, {
+                      month: 'short', day: 'numeric', year: 'numeric'
+                    })}
+                    </time>}
                   </div>}
                 {item.description && <p className="my-2 text-sm text-slate-500">{item.description}</p>}
-                {item.items && <div className="min-h-0 flex-1 overflow-y-auto pr-1 [scrollbar-color:#c5ccda_transparent] scrollbar-thin">
+                {item.items && <div
+                  className="min-h-0 flex-1 overflow-y-auto pr-1 [scrollbar-color:#c5ccda_transparent] scrollbar-thin">
                   <ul className="mt-4 grid gap-2">{item.items.map((entry) => <li
-                  className="rounded-lg bg-slate-100 p-3 text-sm" key={entry}>{entry}</li>)}</ul>
+                    className="rounded-lg bg-slate-100 p-3 text-sm" key={entry}>{entry}</li>)}</ul>
                 </div>}
-              </section>
-            ))}
-          </Responsive>
-        )}
+              </section>))}
+          </Responsive>)}
       </div>
-    </main>
-  );
+    </main>);
 }
 
 export default Dashboard;
