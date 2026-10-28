@@ -1,7 +1,7 @@
 import {useMemo, useState} from 'react';
 import {type Layout, type Layouts, Responsive, WidthProvider} from 'react-grid-layout';
 
-import dashboardConfig from '../data/dashboard.json';
+import dashboardConfig from '../../data/dashboard.json';
 import './dashboard.scss';
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
