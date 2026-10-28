@@ -1,6 +1,4 @@
 {
-  "title": "Personal dashboard",
-  "subtitle": "A flexible home for the things you check most often.",
   "breakpoints": { "lg": 1200, "md": 996, "sm": 768, "xs": 480, "xxs": 0 },
   "columns": { "lg": 32, "md": 10, "sm": 6, "xs": 4, "xxs": 2 },
   "items": [
@@ -32,7 +30,7 @@
       "id": "notes",
       "title": "Open loops",
       "lastUpdated": "2026-10-26",
-      "layout": { "lg": { "x": 19, "y": 0, "w": 9, "h": 15 }, "md": { "x": 5, "y": 13, "w": 5, "h": 11 }, "sm": { "x": 0, "y": 25, "w": 6, "h": 11 }, "xs": { "x": 0, "y": 37, "w": 4, "h": 11 }, "xxs": { "x": 0, "y": 37, "w": 2, "h": 11 } },
+      "layout": { "lg": { "x": 19, "y": 0, "w": 9, "h": 16 }, "md": { "x": 5, "y": 13, "w": 5, "h": 11 }, "sm": { "x": 0, "y": 25, "w": 6, "h": 11 }, "xs": { "x": 0, "y": 37, "w": 4, "h": 11 }, "xxs": { "x": 0, "y": 37, "w": 2, "h": 11 } },
       "items": ["Decide on the next small product improvement", "Archive old notes", "Book a focus block for tomorrow"]
     }
   ]
