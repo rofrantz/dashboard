@@ -18,3 +18,13 @@ The requested project, target, or goal. If a project is not explicitly named, di
 ## Target catalog
 
 `serve`, `build`, `typecheck`, `lint`, `test`, and `e2e` are common targets, but always verify that the selected project exposes the requested target.
+
+## React and Tailwind
+
+For Tailwind v4, configure the workspace with the Tailwind PostCSS integration and load Tailwind from a plain `.css` file:
+
+```css
+@import "tailwindcss";
+```
+
+Do not place that import in `.scss`; Sass `@import` is deprecated and is the wrong processing path for Tailwind v4. If the app currently imports `styles.scss`, change the entrypoint to import the Tailwind `styles.css` file instead.

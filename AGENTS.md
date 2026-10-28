@@ -27,3 +27,9 @@ Use `npm exec nx run <project>:<target>` when an explicit target invocation is p
 - After renaming folders, rediscover project names; do not infer Nx names from paths.
 
 Always report the exact command, project, target, and pass/fail/running result.
+
+## Tailwind and Sass
+
+- Tailwind v4 must be imported from a plain CSS entrypoint with `@import "tailwindcss";`.
+- Do not put `@import "tailwindcss";` in a `.scss` file; Dart Sass reports it as deprecated and Tailwind may not be processed correctly.
+- Keep Sass imports for Sass-specific styles only, and ensure the app entrypoint imports the Tailwind CSS file.
