@@ -2,23 +2,25 @@
 
 This repository is an Nx workspace. Use the repository's installed Nx version through `npm exec nx`.
 
+Always bypass Nx caching. Run every Nx command with `--skip-nx-cache` (the installed Nx version's supported equivalent of `--skip-cache`), for example: `npm exec -- nx test <project> --skip-nx-cache`. Confirm the output reports `Cache: Skipped` for cacheable targets.
+
 ## Project discovery
 
-- Start with `npm exec nx show projects`; project names may differ from folder and package names.
-- Inspect targets with `npm exec nx show project <project>` before choosing a target when configuration is unclear.
+- Start with `npm exec -- nx show projects --skip-nx-cache`; project names may differ from folder and package names.
+- Inspect targets with `npm exec -- nx show project <project> --skip-nx-cache` before choosing a target when configuration is unclear.
 
 ## Common commands
 
-- Run an app: `npm exec nx serve <app-project>`
-- Unit tests: `npm exec nx test <project>`
-- End-to-end tests: `npm exec nx e2e <e2e-project>`
-- Build: `npm exec nx build <project>`
-- Lint: `npm exec nx lint <project>`
-- Typecheck: `npm exec nx typecheck <project>` when that target exists
-- Workspace checks: `npm exec nx run-many -t lint,test,build --all`
-- Affected projects: `npm exec nx show projects --affected`
+- Run an app: `npm exec -- nx serve <app-project> --skip-nx-cache`
+- Unit tests: `npm exec -- nx test <project> --skip-nx-cache`
+- End-to-end tests: `npm exec -- nx e2e <e2e-project> --skip-nx-cache`
+- Build: `npm exec -- nx build <project> --skip-nx-cache`
+- Lint: `npm exec -- nx lint <project> --skip-nx-cache`
+- Typecheck: `npm exec -- nx typecheck <project> --skip-nx-cache` when that target exists
+- Workspace checks: `npm exec -- nx run-many -t lint,test,build --all --skip-nx-cache`
+- Affected projects: `npm exec -- nx show projects --affected --skip-nx-cache`
 
-Use `npm exec nx run <project>:<target>` when an explicit target invocation is preferable. Treat `serve` as a long-running process and preserve its terminal/session.
+Use `npm exec -- nx run <project>:<target> --skip-nx-cache` when an explicit target invocation is preferable. Treat `serve` as a long-running process and preserve its terminal/session.
 
 ## Troubleshooting and safety
 
