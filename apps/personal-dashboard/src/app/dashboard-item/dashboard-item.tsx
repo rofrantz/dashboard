@@ -8,21 +8,24 @@ type DashboardItemProps = HTMLAttributes<HTMLElement> & {
   item: DashboardItemData;
 };
 
-export const DashboardItem = forwardRef<HTMLElement, DashboardItemProps>(function DashboardItem(
-  {item, children: gridChildren, className, style, ...gridProps},
-  ref,
-) {
+export const DashboardItem = forwardRef<HTMLElement, DashboardItemProps>(function DashboardItem({
+                                                                                                  item,
+                                                                                                  children: gridChildren,
+                                                                                                  className,
+                                                                                                  style,
+                                                                                                  ...gridProps
+                                                                                                }, ref,) {
   return (
-    <section
-      ref={ref}
-      {...gridProps}
-      className={['flex h-full flex-col rounded-2xl bg-white p-5 shadow-sm', className]
-        .filter(Boolean)
-        .join(' ')}
-      style={style}
-    >
-      {item.title &&
-        <div className="dashboard-card__title-handle flex cursor-move items-center gap-2 font-bold mb-2" aria-label={`Move ${item.title}`}>
+      <section
+        ref={ref}
+        {...gridProps}
+        className={['flex h-full flex-col rounded-2xl bg-white p-5 shadow-sm shadow-[0_10px_24px_rgba(20,34,66,.06),0_2px_5px_rgba(20,34,66,.04)] transition-shadow duration-500 ease-out hover:shadow-[0_18px_30px_rgba(20,34,66,.14),0_7px_10px_rgba(20,34,66,.08)]', className]
+          .filter(Boolean)
+          .join(' ')}
+        style={style}
+      >
+        {item.title && <div className="dashboard-card__title-handle flex cursor-move items-center gap-2 font-bold mb-2"
+                            aria-label={`Move ${item.title}`}>
           <span className="text-[22px] leading-none text-slate-400" aria-hidden="true">⠿</span>
           <span>{item.title}</span>
           {item.lastUpdated && <time
@@ -33,13 +36,13 @@ export const DashboardItem = forwardRef<HTMLElement, DashboardItemProps>(functio
           })}
           </time>}
         </div>}
-      {item.description && <p className="my-2 text-sm text-slate-500">{item.description}</p>}
-      {item.items && <div
-        className="min-h-0 flex-1 overflow-y-auto pr-1 [scrollbar-color:#c5ccda_transparent] scrollbar-thin">
-        <ul className="mt-4 grid gap-2">{item.items.map((entry) => <li
-          className="rounded-lg bg-slate-100 p-3 text-sm" key={entry}>{entry}</li>)}</ul>
-      </div>}
-      {gridChildren}
-    </section>
-  );
+        {item.description && <p className="my-2 text-sm text-slate-500">{item.description}</p>}
+        {item.items && <div
+          className="min-h-0 flex-1 overflow-y-auto pr-1 [scrollbar-color:#c5ccda_transparent] scrollbar-thin">
+          <ul className="mt-4 grid gap-2">{item.items.map((entry) => <li
+            className="rounded-lg bg-slate-100 p-3 text-sm" key={entry}>{entry}</li>)}</ul>
+        </div>}
+        {gridChildren}
+      </section>
+    );
 });
