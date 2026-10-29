@@ -19,7 +19,7 @@ export const DashboardItem = forwardRef<HTMLElement, DashboardItemProps>(functio
       <section
         ref={ref}
         {...gridProps}
-        className={['flex h-full flex-col rounded-2xl bg-white p-5 shadow-sm shadow-[0_10px_24px_rgba(20,34,66,.06),0_2px_5px_rgba(20,34,66,.04)] transition-shadow duration-500 ease-out hover:shadow-[0_18px_30px_rgba(20,34,66,.14),0_7px_10px_rgba(20,34,66,.08)]', className]
+        className={['flex h-full flex-col rounded-2xl bg-white p-5 shadow-[0_10px_24px_rgba(20,34,66,.06),0_2px_5px_rgba(20,34,66,.04)] transition-shadow duration-500 ease-out hover:shadow-[0_18px_30px_rgba(20,34,66,.14),0_7px_10px_rgba(20,34,66,.08)]', className]
           .filter(Boolean)
           .join(' ')}
         style={style}
